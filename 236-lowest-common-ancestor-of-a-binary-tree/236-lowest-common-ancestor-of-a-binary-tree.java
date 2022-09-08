@@ -32,7 +32,8 @@ class Solution {
         TreeNode right = lowestCommonAncestor(root.right,p,q);
         //if we have not found p and q at left subtree, it must be in right or root.
         
-       if(left != null && right != null){ // if left and right is not null, it must be the root
+       if(left != null && right != null){ 
+           // if left and right is not null, it must be the root
            return root;
        }
         // but if the left or the right is null, it must be the rest.
