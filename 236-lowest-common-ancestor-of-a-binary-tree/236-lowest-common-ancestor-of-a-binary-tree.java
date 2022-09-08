@@ -1,6 +1,6 @@
 class Solution {
         boolean foundP= false, foundQ= false;
-
+// improve: a flag to check that we found p or q, doesnt need to check all the tree anymore
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
          if(root == null) return null;
 
