@@ -13,24 +13,32 @@
  *     }
  * }
  */
-
-public class Solution {
+class Solution {
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> result = new ArrayList<Integer>();
-        rightView(root, result, 0);
-        return result;
-    }
-    
-    public void rightView(TreeNode curr, List<Integer> result, int currDepth){
-        if(curr == null){
-            return;
+        List<Integer> list = new LinkedList<>();
+        if(root == null){
+            return list;
         }
-        if(currDepth == result.size()){
-            result.add(curr.val);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int level = queue.size();
+            // at each level, we get the first node in the queue
+            TreeNode node = queue.peek();
+            list.add(node.val);
+            // each level of the tree, we will get the most right node 
+            for(int i = 0 ; i < level; i ++){
+                // in the queue we will add the right node first
+                TreeNode curNode = queue.poll();
+                if(curNode.right != null){
+                queue.add(curNode.right);
+                }
+                if(curNode.left != null){
+                queue.add(curNode.left);
+                }
+            }
         }
         
-        rightView(curr.right, result, currDepth + 1);
-        rightView(curr.left, result, currDepth + 1);
-        
+        return list;
     }
 }
