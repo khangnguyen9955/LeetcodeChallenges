@@ -23,10 +23,12 @@ class Solution {
         queue.add(root);
         while(!queue.isEmpty()){
             int level = queue.size();
+            // at each level, we get the first node in the queue
             TreeNode node = queue.peek();
             list.add(node.val);
             // each level of the tree, we will get the most right node 
             for(int i = 0 ; i < level; i ++){
+                // in the queue we will add the right node first
                 TreeNode curNode = queue.poll();
                 if(curNode.right != null){
                 queue.add(curNode.right);
@@ -34,7 +36,6 @@ class Solution {
                 if(curNode.left != null){
                 queue.add(curNode.left);
                 }
- //               list.add(queue.poll());
             }
         }
         
