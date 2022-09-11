@@ -36,9 +36,9 @@ class Solution {
         if(root == null || subRoot == null){
             return false ;
         }
-       
-        if(root.val != subRoot.val) return false;
-        
-        return check(root.left,subRoot.left) && check(root.right, subRoot.right);
+        if(root.val == subRoot.val){
+        return check(root.left,subRoot.left) && check(root.right, subRoot.right);    
+        }
+        return false;
     }
 }
