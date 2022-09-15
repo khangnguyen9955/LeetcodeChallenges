@@ -12,7 +12,6 @@ public class Codec {
     public String serialize(TreeNode root) {
         StringBuilder serializeString = new StringBuilder();
         generateString(root, serializeString);
-        System.out.println(serializeString);
         return serializeString.toString();
         // a: 97
         // 1: b
@@ -56,7 +55,6 @@ public class Codec {
         // using Queue to get the String, split the "," out.
         // asList because it allows our queue to contains null value
         queue.addAll(Arrays.asList(data.split(",")));
-        System.out.println(queue);
         //recursive 
         return buildTreeFromString(queue);
         
@@ -73,7 +71,6 @@ public class Codec {
             // get the current node
             // example: "1" => 1
             TreeNode root = new TreeNode(Integer.valueOf(val));
-            
             // left of the "1" => build from "2,a,a,3,4..."
             root.left = buildTreeFromString(nodes);
            // same method 
