@@ -24,10 +24,8 @@
 // -> We will flag the smallest in our tree, then find the next (kth-1) elem?
 // -> If we do that way, I think there are a lot of unnecessary elements we need to find and flag before we got the Kth elem
 // -> It is BST. Each level in the tree, we knew that there is at least 1 element less than 1 elem (root < right or left < root or both)
-// -> So, with the last level of the tree, we got at least 1th smallest elem in the tree
-// -> But with that way we need to find the last level.
 // -> I think we can recursively, and use a count variable to count every level
-
+// -> when the root is not null, we will recursively call the left and right, with every call we plus the count by 1 means that when we reach the last node in that tree we got the next smallest elem. 
 class Solution {
     int count = 0;
     int result = Integer.MIN_VALUE;
@@ -43,7 +41,7 @@ class Solution {
         helper(root.left,k);
         count++;
         if(count == k){result = root.val;}
-        if(count < k){
+        if(count < k){ // we only call the right, when we still not find the kth elem. Means that when we got the exact kth elem, we will return.
         helper(root.right,k);
         }
     }
