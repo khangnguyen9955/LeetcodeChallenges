@@ -25,7 +25,8 @@ public class Codec {
  //       int node= root.val+97;
    //     char convertNode = (char)node;
      //   return serializeString;
-        // change: instead of using alpha char, we use root value
+        // change: instead of using alpha char, we use root value/
+        // improvement from the original idea: using splitter to split every number and "a" to put in the queue as an array, then we can easily get each node and build from it
     }
     public void generateString (TreeNode node, StringBuilder str){
         if(node == null){
@@ -55,7 +56,7 @@ public class Codec {
         // using Queue to get the String, split the "," out.
         // asList because it allows our queue to contains null value
         queue.addAll(Arrays.asList(data.split(",")));
-        
+        System.out.println(queue);
         //recursive 
         return buildTreeFromString(queue);
         
