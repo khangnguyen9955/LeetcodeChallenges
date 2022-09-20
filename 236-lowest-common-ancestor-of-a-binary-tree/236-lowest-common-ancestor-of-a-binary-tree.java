@@ -1,14 +1,37 @@
 class Solution {
+        boolean foundP= false, foundQ= false;
+// improve: a flag to check that we found p or q, doesnt need to check all the tree anymore
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+         if(root == null) return null;
+        if(root.val == q.val){
+            foundQ = true;
+            return root;
+        }
+        if(root.val == p.val){
+            foundP= true;
+            return root;
+        }
+       TreeNode left = lowestCommonAncestor(root.left,p,q);
+        // if we found p and q at left subtree, just return it !! 
+        if(foundQ && foundP){
+            return left;
+        }
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+        //if we have not found p and q at left subtree, it must be in right or root.
         
-        if(root == null || root == p || root == q) return root;
-        
-        TreeNode lca1 = lowestCommonAncestor(root.left, p, q);
-        TreeNode lca2 = lowestCommonAncestor(root.right, p, q);
-        
-        if(lca1 != null && lca2 != null) return root;
-        else if(lca1 != null) return lca1;
-        else return lca2;
+       if(left != null && right != null){ 
+           // if left and right is not null, it must be the root
+           return root;
+       }
+        // but if the left or the right is null, it must be the rest.
+
+        /* if(left == null){
+            return right;
+        }else {
+            return left;
+        }*/
+        //  using the code line below for more clean
+        return left == null ? right : left;
         
     }
 }
