@@ -1,46 +1,46 @@
 class Solution {
     
-    public List<List<Integer>> pacificAtlantic(int[][]matrix) {
-         List<List<Integer>> res = new LinkedList<>();
-      
-        if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
-            return res;
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+         List<List<Integer>> list = new LinkedList<>();
+        if(heights == null ||heights.length == 0 ||heights[0].length == 0){
+            return list;
         }
-        int n = matrix.length, m = matrix[0].length;
-        boolean[][]pacific = new boolean[n][m];
-        boolean[][]atlantic = new boolean[n][m];
-        for(int i=0; i<n; i++){
-            dfs(matrix, pacific, Integer.MIN_VALUE, i, 0);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, i, m-1);
+        int rows =heights.length, cols =heights[0].length;
+        boolean[][]foundPacific = new boolean[rows][cols];
+        boolean[][]foundAtlantic = new boolean[rows][cols];
+        int preValue = Integer.MIN_VALUE;
+        for(int i=0; i< rows; i++){
+            // go vertical
+            dfs(heights, foundPacific, preValue, i, 0); // row i, col 0 
+            dfs(heights, foundAtlantic, preValue, i, cols-1); // row i, col cols-1 
         }
-        for(int i=0; i<m; i++){
-            dfs(matrix, pacific, Integer.MIN_VALUE, 0, i);
-            dfs(matrix, atlantic, Integer.MIN_VALUE, n-1, i);
+        for(int i=0; i<cols; i++){
+            // go horizontal
+            dfs(heights, foundPacific, preValue, 0, i); // row 0 , col i
+            dfs(heights, foundAtlantic, preValue, rows-1, i); // row rows-1, col i
         }
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                  List<Integer> add= new LinkedList<>();
-                if (pacific[i][j] && atlantic[i][j]) 
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (foundPacific[i][j] && foundAtlantic[i][j]) 
                 {
-                    add.add(i);
-                    add.add(j);
-                    res.add(add);
+                  List<Integer>res= new LinkedList<>();
+                    res.add(i);
+                    res.add(j);
+                    list.add(res);
                 }
-                }   
-                }
+             }   
+        }
                                    
-        return res;
+        return list;
     }
-    
-    int[][]dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
-    
-    public void dfs(int[][]matrix, boolean[][]visited, int height, int x, int y){
-        int n = matrix.length, m = matrix[0].length;
-        if(x<0 || x>=n || y<0 || y>=m || visited[x][y] || matrix[x][y] < height)
+    int[][]dirs = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
+    public void dfs(int[][]mat, boolean[][]visited, int preValue, int row, int col){
+        int rows = mat.length, cols = mat[0].length;
+        if(row<0 || row>=rows|| col<0 || col>=cols || visited[row][col] || mat[row][col] <preValue)
             return;
-        visited[x][y] = true;
-        for(int[]d:dir){
-            dfs(matrix, visited, matrix[x][y], x+d[0], y+d[1]);
+        visited[row][col] = true;
+        for(int[]dir:dirs){
+            dfs(mat, visited, mat[row][col], row+dir[0], col+dir[1]); // 4 mutations
         }
     }
     
