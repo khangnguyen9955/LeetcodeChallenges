@@ -1,61 +1,47 @@
 class Solution {
-        int [][]dirs = new int [][]{{1,0},{-1,0},{0,1},{0,-1}};
-    public List<List<Integer>> pacificAtlantic(int[][] heights) {
-        // pacific ocean is when we at the r[0] and c[0]
-        // atlantic ocean is when we at the r[height.length] c[height[0].length];
-        int rows = heights.length;
-        int cols = heights[0].length;
-        List<List<Integer>> list = new LinkedList<>();
-        if(heights == null || rows == 0 || cols == 0){
-            return list;
+    
+    public List<List<Integer>> pacificAtlantic(int[][]matrix) {
+         List<List<Integer>> res = new LinkedList<>();
+      
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
+            return res;
         }
-        boolean [][] foundPacific = new boolean[rows][cols]; //check when found pacific
-        boolean [][] foundAtlantic = new boolean [rows][cols];      
-        Queue<int[]> pacificQueue = new LinkedList<>();
-        Queue<int[]> atlanticQueue = new LinkedList<>();
-        // add all the cells as vertical border to the queue
-        for(int i = 0 ; i<rows;i++){
-            pacificQueue.offer(new int []{i,0});
-            atlanticQueue.offer(new int [] {i,cols-1});
-            foundPacific[i][0]=true;
-            foundAtlantic[i][cols-1]=true;
+        int n = matrix.length, m = matrix[0].length;
+        boolean[][]pacific = new boolean[n][m];
+        boolean[][]atlantic = new boolean[n][m];
+        for(int i=0; i<n; i++){
+            dfs(matrix, pacific, Integer.MIN_VALUE, i, 0);
+            dfs(matrix, atlantic, Integer.MIN_VALUE, i, m-1);
         }
-        //add all the cells as horizontal border to the queue
-        for(int j = 0 ;j <cols;j++){
-            pacificQueue.offer(new int []{0,j});
-            atlanticQueue.offer(new int []{rows-1,j});
-            foundPacific[0][j]=true;
-            foundAtlantic[rows-1][j]=true;
+        for(int i=0; i<m; i++){
+            dfs(matrix, pacific, Integer.MIN_VALUE, 0, i);
+            dfs(matrix, atlantic, Integer.MIN_VALUE, n-1, i);
         }
-        bfs(heights,pacificQueue,foundPacific);
-        bfs(heights,atlanticQueue,foundAtlantic);       
-        
-        for(int i = 0 ; i < rows;i++){
-            for(int j =0 ; j < cols; j++){
-               List<Integer> result = new LinkedList<>();
-               if(foundPacific[i][j] && foundAtlantic[i][j] ) {
-                   result.add(i);
-                   result.add(j);
-                   list.add(result);
-               }
-            }
-        }
-        return list;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                  List<Integer> add= new LinkedList<>();
+                if (pacific[i][j] && atlantic[i][j]) 
+                {
+                    add.add(i);
+                    add.add(j);
+                    res.add(add);
+                }
+                }   
+                }
+                                   
+        return res;
     }
-    public void bfs (int [][]mat, Queue<int []> queue,boolean[][]found){
-        int rows = mat.length;
-        int cols = mat[0].length;
-        while(!queue.isEmpty()){
-            int [] current = queue.poll();
-            for(int []dir:dirs){
-                int x = current[0] + dir[0];
-                int y = current[1] + dir[1];
-                if( x < 0 || y>=cols || y < 0 || x >= rows  || found[x][y] || mat[x][y] < mat[current[0]][current[1]] ){ continue;}
-                  found[x][y] = true;
-                  queue.offer(new int[] {x,y});
-            }
+    
+    int[][]dir = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
+    
+    public void dfs(int[][]matrix, boolean[][]visited, int height, int x, int y){
+        int n = matrix.length, m = matrix[0].length;
+        if(x<0 || x>=n || y<0 || y>=m || visited[x][y] || matrix[x][y] < height)
+            return;
+        visited[x][y] = true;
+        for(int[]d:dir){
+            dfs(matrix, visited, matrix[x][y], x+d[0], y+d[1]);
         }
-        
     }
     
 }
