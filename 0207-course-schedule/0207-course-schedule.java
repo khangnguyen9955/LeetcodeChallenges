@@ -13,7 +13,7 @@ class Solution {
        }
         // build the graph (done)
        for(int i = 0 ; i < numCourses; i++){
-           if(dfs(graph,taken, i)){
+           if( dfs(graph,taken, i)){
                return false;
            }
        }
