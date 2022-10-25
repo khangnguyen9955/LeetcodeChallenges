@@ -8,7 +8,7 @@ class Solution {
             graph.add(new ArrayList<Integer>());
         }
         //  add edge to the graph
-        //  default taken course is 1
+        //  default taken array state is 1
         for(int [] course : prerequisites){
             taken[course[0]]++;
             graph.get(course[1]).add(course[0]);
