@@ -2,39 +2,60 @@ class Solution {
     
     public int[] findOrder(int numCourses, int [][] prerequisites){
         List<List<Integer>> graph = new ArrayList<>();
-        int[] taken = new int[numCourses];
+        int[] totalPreCoursesOfEachCourse = new int[numCourses];
         // build graph
         for (int i = 0; i < numCourses ; i++) {
             graph.add(new ArrayList<Integer>());
         }
         //  add edge to the graph
-        //  default taken array state is 1
+        //  
+        // different with the course schedule problem
+        // this problem we will build the graph with index is the course and value is other available courses can take from this course
+        // and we also count the total prerequisite courses of a course
+        // we can take
         for(int [] course : prerequisites){
-            taken[course[0]]++;
+            totalPreCoursesOfEachCourse[course[0]]++;
             graph.get(course[1]).add(course[0]);
         }
-    return BFS(graph,taken);
+        // with example 2
+        // Course | Available 
+        //  0     | [1,2]
+        //  1     | [3]
+        //  2     | [3]
+    return BFS(graph,totalPreCoursesOfEachCourse);
     }
-    public int [] BFS (List<List<Integer>> graph,int [] taken){
+    public int [] BFS (List<List<Integer>> graph,int []totalPreCoursesOfEachCourse){
         Queue<Integer> queue = new LinkedList<>();
-        int [] order = new int[taken.length];
-        for (int i = 0; i < taken.length ; i++) {
-            if (taken[i] ==0 ){
-                queue.offer(i);
+        int numCourse = totalPreCoursesOfEachCourse.length; 
+        int [] order = new int[numCourse];
+        for (int i = 0; i < numCourse ; i++) {
+            if (totalPreCoursesOfEachCourse[i] == 0 ){ 
+                queue.offer(i); 
+                // we will add all the courses that do not
+                // need us to take any prequisite courses to the queue
             }
         }
-        int visited = 0;
+        int visited = 0; // for counting
         while(!queue.isEmpty()){
-            int currentCourse = queue.poll();
-            order[visited++] =currentCourse;
-            for (int prerequisiteCourse : graph.get(currentCourse)) {
-                taken[prerequisiteCourse]--;
-                if (taken[prerequisiteCourse] == 0){
-                    queue.offer(prerequisiteCourse);
+            int currentCourse = queue.poll(); 
+            // from this current course
+            order[visited++] = currentCourse;
+            for (int availableCourse: graph.get(currentCourse)) {
+            // get all the course we can take  
+            // from the current course
+            totalPreCoursesOfEachCourse[availableCourse]--;
+            // we will decrease the total prerequisite course of this current course
+            // by 1, because we will offer it into the queue now and BFS it
+                if (totalPreCoursesOfEachCourse[availableCourse] == 0){
+                    // if this total pre... course of this current course
+                    // now become 0, it means that we have to take 
+                    // this available course after the current course
+                    // for example course 0 -> course 1
+                    queue.offer(availableCourse);
+                    // now we will add this available course to the queue to BFS
                 }
             }
         }
-
-return visited == taken.length ? order : new int[0];
+return visited == numCourse ? order : new int[0];
     }
 }
