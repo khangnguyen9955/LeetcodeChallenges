@@ -54,6 +54,11 @@ class Solution {
                     queue.offer(availableCourse);
                     // now we will add this available course to the queue to BFS
                 }
+                // if the total... of available course 
+                // not equal 0, so this available course can be taken after
+                // another course, so we just continue loop
+                // and this available course will be taken after
+                // the last course (in graph) 
             }
         }
 return visited == numCourse ? order : new int[0];
