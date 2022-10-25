@@ -16,8 +16,6 @@ class Solution {
             maxpre = maxhere;
             minpre = minhere;    
         }
-    
-    
     return max;
     }
 }
