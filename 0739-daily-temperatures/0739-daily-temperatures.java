@@ -8,7 +8,6 @@ class Solution {
                 hottest = currTemp;
                 continue;
             }
-        
             int days = 1;
             while(temperatures[i + days] <= currTemp){
                 days += ans[i+days]  ; 
