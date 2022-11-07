@@ -15,7 +15,6 @@ class Solution {
         }
         ListNode result = new ListNode(0);
         ListNode tail = result;
-        
         // use this priority queue to maintain the first smallest nodes of each linked list.
         PriorityQueue<ListNode> pQueue = new PriorityQueue<ListNode>(lists.length,(a,b)->a.val-b.val);
         for(ListNode listNode: lists ){
