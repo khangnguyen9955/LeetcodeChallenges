@@ -31,7 +31,6 @@ class Solution {
                 pQueue.add(tail.next);
             }
         }
-        
         return result.next;
     }
     
