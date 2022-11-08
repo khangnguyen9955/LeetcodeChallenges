@@ -6,6 +6,9 @@ class Solution {
         } // base case, length <3 => return empty list;
         Arrays.sort(nums);
         for(int i = 0 ; i<nums.length-2;i++){ 
+             if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             int j = i+1;
             int k = nums.length-1;
             // create 2 pointers to traverse, the next of left pointer and right pointer 
