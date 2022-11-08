@@ -29,11 +29,8 @@ class Solution {
             i++;
             k++;
         }
-        System.out.println(nums.length);
         if(nums.length%2==0){
-            
             res = (nums[nums.length/2] + nums[nums.length/2 -1])/2.0;
-                
         }
         else{
             res = nums[nums.length/2];
