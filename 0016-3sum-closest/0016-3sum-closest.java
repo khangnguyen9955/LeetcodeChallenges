@@ -13,14 +13,21 @@ class Solution {
             int k = nums.length -1;
             while(j < k ){
                 int threeSum = nums[i] + nums[j] +nums[k]; 
-                                if(threeSum == target){
-                    // if threesum == target means that 
+                if(threeSum == target){
+             // if threesum == target means that distance = 0; return three sum
                     return threeSum;    
                 }  
-                else if(threeSum   > target){
+                else if(threeSum >target){
+                    // if the threesum > target
+                    // now we want threeSum will be smaller
+                    // to get closer to the target
                     k--;
                 }
                 else if(threeSum < target){
+                    //same with above
+                    // threeSum < target
+                    // we want it will be larger
+                    // to closer to the target
                     j++;                   
                 }
                 if(Math.abs(target-threeSum) < result){
