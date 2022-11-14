@@ -13,12 +13,8 @@ class Solution {
             int k = nums.length -1;
             while(j < k ){
                 int threeSum = nums[i] + nums[j] +nums[k]; 
-
-                if( Math.abs(target-threeSum) < result){
-                     result = Math.abs(target - threeSum );                       
-                     closest = threeSum;
-                    } 
-                if(threeSum == target){
+                                if(threeSum == target){
+                    // if threesum == target means that 
                     return threeSum;    
                 }  
                 else if(threeSum   > target){
@@ -27,6 +23,14 @@ class Solution {
                 else if(threeSum < target){
                     j++;                   
                 }
+                if(Math.abs(target-threeSum) < result){
+                    // if abs(target - threeSum) < result 
+                    // means that we got a closer sum
+                    // update it!
+                     result = Math.abs(target - threeSum );                       
+                     closest = threeSum;
+                    } 
+
             }
         }
         return closest;
