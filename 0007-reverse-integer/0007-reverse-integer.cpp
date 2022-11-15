@@ -3,7 +3,7 @@ public:
     int reverse(int x) {
     long temp =0;
     long pos = 0;
-    long result= 0;
+    long result = 0;
         while (x!=0){
         pos = x % 10;           
         x/=10;
