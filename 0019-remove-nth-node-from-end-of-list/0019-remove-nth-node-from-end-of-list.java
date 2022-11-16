@@ -14,12 +14,10 @@ class Solution {
         startNode.next = head;
         ListNode fast = startNode;
         ListNode slow = startNode;
-        
         for(int i = 0 ; i <= n; i++){
             // create a distance N between slow and fast pointers
             fast = fast.next;
         }
-        
         while(fast != null){
             // maintain this distance between 2 pointers
             // and move it until fast is out of the list
