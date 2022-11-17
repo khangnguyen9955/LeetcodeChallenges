@@ -8,7 +8,6 @@ class Solution {
         }
     StringBuffer[] sb = new StringBuffer[nRows];
     for (int i = 0; i < sb.length; i++) sb[i] = new StringBuffer();
-    
     int i = 0;
     while (i < len) {
         for (int idx = 0; idx < nRows && i < len; idx++) // vertically down
