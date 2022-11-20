@@ -21,6 +21,5 @@ bool isPalindrome(int x) {
 		else result = false;
 	}
 	return result;
-
 }
 };
