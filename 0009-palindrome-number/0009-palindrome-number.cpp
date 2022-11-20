@@ -1,4 +1,6 @@
-class Solution { public: bool isPalindrome(int x) {
+class Solution { 
+    public: 
+bool isPalindrome(int x) {
 	bool result = true;
 	int a = x;
 	int b = 0;
@@ -18,6 +20,4 @@ class Solution { public: bool isPalindrome(int x) {
 		}
 		else result = false;
 	}
-	return result;
-}
-};
+	return result;}};
