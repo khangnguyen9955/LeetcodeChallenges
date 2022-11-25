@@ -6,8 +6,7 @@ class Solution {
     }
     public void backtracking(int [] nums, List<Integer> list , List<List<Integer>> result){
         if (list.size()== nums.length){ // enough nums in the list
-            result.add(new ArrayList<>(list));
-        }else{
+            result.add(new ArrayList<>(list));}else{
         for(int i = 0 ; i < nums.length; i++){
             if(list.contains(nums[i])) continue; // skip contained num
             list.add(nums[i]);
