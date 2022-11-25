@@ -12,7 +12,6 @@ class Solution {
         // if the remain == 0 => found first unique combination, add into res list
         // else remain > 0 => continue backtrack
         List<List<Integer>> res = new ArrayList<>();
-        Arrays.sort(candidates);
         backtrack(candidates,new ArrayList<>(),res, target, 0);
         return res;
         }
