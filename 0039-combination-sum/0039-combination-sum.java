@@ -16,6 +16,7 @@ class Solution {
         backtrack(candidates,new ArrayList<>(),res, target, 0);
         return res;
         }
+    /*
     public void backtrack(int[]candidates,  List<Integer> list , List<List<Integer>> res, int remain, int start){
         if (remain < 0 ) return;
         else if(remain == 0 ) res.add(new ArrayList<>(list));
@@ -27,6 +28,28 @@ class Solution {
                 list.remove(list.size()-1);
             }
         }
+    }
+    */
+    // IMPROVEEEEEE solution
+    public void backtrack(int[]candidates,  List<Integer> list , List<List<Integer>> res, int remain, int start){
+        if(start == candidates.length){ // reach the end of the candidates[]
+            if(remain ==0){  //now check if we found solution yet or not 
+                res.add(new ArrayList<>(list));
+            }
+            return;
+        }
+        // not found solution 
+        // so this case is the remain still >= the candidate[i]
+        // means we can add this candidate into list
+        if (candidates[start] <= remain){
+                list.add(candidates[start]);
+                backtrack(candidates,list,res,remain-candidates[start],start); 
+                // still back track with "i" due to we can choose the same number for an unlimited of times
+                list.remove(list.size()-1);
+        }
+        // this case here means the remain > target
+        // move for the new backtrack
+        backtrack(candidates,list,res,remain,start+1);
     }
      
 }
