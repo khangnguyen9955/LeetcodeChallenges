@@ -50,5 +50,4 @@ class Solution {
         // move for the new backtrack
         backtrack(candidates,list,res,remain,start+1);
     }
-     
 }
