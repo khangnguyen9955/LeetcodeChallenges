@@ -2,6 +2,7 @@ class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         Arrays.sort(nums); 
+        // sorting for handling duplicated nums
         backtracking(nums, new ArrayList<Integer>(), result, new boolean [nums.length]);
         return result;
     }
