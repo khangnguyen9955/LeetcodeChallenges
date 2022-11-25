@@ -2,8 +2,6 @@ class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
         Arrays.sort(nums); 
-        // now if we have [1 2 3 4 3 ]
-        // => [1 2 3 3 4]
         backtracking(nums, new ArrayList<Integer>(), result, new boolean [nums.length]);
         return result;
     }
