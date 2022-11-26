@@ -1,6 +1,6 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        // same with combinationSum but now each candidate number can be used only once
+        // same with combinationSum but now we have to check duplicated nums
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(candidates);
         backtrack(res, new ArrayList<>(), target, 0, candidates);
