@@ -40,5 +40,6 @@ class Solution {
             backtrack(res,list,remain,start+1,nums);
     }
     // runtime not change @@
+    // but memory should be reduced
     
 }
