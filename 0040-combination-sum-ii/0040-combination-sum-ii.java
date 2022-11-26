@@ -6,6 +6,7 @@ class Solution {
         backtrack(res, new ArrayList<>(), target, 0, candidates);
         return res;
     }
+    /*
     public void backtrack ( List<List<Integer>> res, List<Integer> list, int remain , int start, int [] nums){
         if(remain ==0){
             res.add(new ArrayList<>(list));
@@ -23,4 +24,20 @@ class Solution {
             }
         }
     }
+    */
+    // Another method:
+        public void backtrack ( List<List<Integer>> res, List<Integer> list, int remain , int start, int [] nums){
+        if(start == nums.length){
+            if(remain ==0)res.add(new ArrayList<>(list));
+            return;
+        }
+            if(nums[start] <=remain){ // valid condition to add more nums
+            list.add(nums[start]);
+            backtrack(res,list,remain-nums[start],start+1, nums);
+            list.remove(list.size()-1);
+            }
+            while(start < nums.length-1 && nums[start] == nums[start+1]){start++;}
+            backtrack(res,list,remain,start+1,nums);
+    }
+    
 }
