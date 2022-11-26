@@ -16,11 +16,13 @@ class Solution {
         else
         {
             for( int i = start ;i < nums.length; i++){
-            if(i >start  && nums[i] == nums[i-1]){continue;}else{
+            if(i >start  && nums[i] == nums[i-1])
+            {continue;}
+             if(nums[i] > remain)   break;
             list.add(nums[i]);
             backtrack(res,list,remain-nums[i],i+1, nums);
             list.remove(list.size()-1);
-            }
+            
             }
         }
     }
