@@ -11,7 +11,6 @@ class Solution {
         backtrack(res,new ArrayList<>(),n,1,k);
         return res;
     }
-    
     public void backtrack(List<List<Integer>> res, List<Integer> list, int remain,int start,int k){
         if (remain ==0 && k==list.size()){
             res.add(new ArrayList<>(list));
