@@ -23,7 +23,7 @@ class Solution {
             }
         }
     }
-    // Another method:
+    // Another implementation:
     /*
         public void backtrack ( List<List<Integer>> res, List<Integer> list, int remain , int start, int [] nums){
         if(start == nums.length){
