@@ -23,7 +23,8 @@ class Solution {
             }
         }
     }
-    //compiler ncc
+    //compiler ncc/
+    // slower than the first submitions @@
     // Another method:
     /*
         public void backtrack ( List<List<Integer>> res, List<Integer> list, int remain , int start, int [] nums){
