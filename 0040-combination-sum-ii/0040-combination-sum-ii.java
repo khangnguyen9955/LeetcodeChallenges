@@ -6,7 +6,6 @@ class Solution {
         backtrack(res, new ArrayList<>(), target, 0, candidates);
         return res;
     }
-    /*
     public void backtrack ( List<List<Integer>> res, List<Integer> list, int remain , int start, int [] nums){
         if(remain ==0){
             res.add(new ArrayList<>(list));
@@ -24,8 +23,8 @@ class Solution {
             }
         }
     }
-    */
     // Another method:
+    /*
         public void backtrack ( List<List<Integer>> res, List<Integer> list, int remain , int start, int [] nums){
         if(start == nums.length){
             if(remain ==0) res.add(new ArrayList<>(list));
@@ -41,5 +40,5 @@ class Solution {
     }
     // runtime not change @@
     // but memory should be reduced
-    
+    */
 }
