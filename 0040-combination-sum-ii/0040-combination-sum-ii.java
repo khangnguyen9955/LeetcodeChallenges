@@ -11,6 +11,7 @@ class Solution {
             return;
         }else if(remain ==0){
             res.add(new ArrayList<>(list));
+            return;
         }
         else
         {
