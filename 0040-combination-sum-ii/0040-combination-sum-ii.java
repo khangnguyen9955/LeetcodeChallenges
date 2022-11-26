@@ -14,13 +14,12 @@ class Solution {
         else
         {
             for( int i = start ;i < nums.length; i++){
-            if(i >start  && nums[i] == nums[i-1])
+            if(i >start  && nums[i] == nums[i-1]) // avoiding duplicated numbers
             {continue;}
-             if(nums[i] > remain)   break;
+           if(nums[i] > remain)   break; // base case
             list.add(nums[i]);
             backtrack(res,list,remain-nums[i],i+1, nums);
             list.remove(list.size()-1);
-            
             }
         }
     }
