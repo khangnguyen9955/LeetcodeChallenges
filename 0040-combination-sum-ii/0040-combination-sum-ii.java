@@ -7,9 +7,7 @@ class Solution {
         return res;
     }
     public void backtrack ( List<List<Integer>> res, List<Integer> list, int remain , int start, int [] nums){
-        if(remain < 0){
-            return;
-        }else if(remain ==0){
+        if(remain ==0){
             res.add(new ArrayList<>(list));
             return;
         }
