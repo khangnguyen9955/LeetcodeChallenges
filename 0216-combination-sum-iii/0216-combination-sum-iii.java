@@ -8,23 +8,21 @@ class Solution {
         // with the process check to choose next num
         // i think we can implement the binarysearch to use (?) instead of linear search
         List<List<Integer>> res = new ArrayList<>();
-        backtrack(res,new ArrayList<>(),n,new boolean[10],1,k);
+        backtrack(res,new ArrayList<>(),n,1,k);
         return res;
     }
     
-    public void backtrack(List<List<Integer>> res, List<Integer> list, int remain, boolean[]flag, int start, int k){
+    public void backtrack(List<List<Integer>> res, List<Integer> list, int remain,int start,int k){
         if (remain ==0 && k==list.size()){
             res.add(new ArrayList<>(list));
             return;
          }
-        
-        else {
-            while(start < 10 && start <= remain){
-            list.add(start);
-            backtrack(res,list,remain - start, flag, start+1,k);
+        else if(remain > 0 && list.size() < k) {
+            for (int i = start; i<=9;i++){
+            list.add(i);
+            backtrack(res,list,remain-i,i+1,k);
             list.remove(list.size()-1);
-                start++;
-            }
+        }
         }
     }
 }
