@@ -23,7 +23,6 @@ class Solution {
             }
         }
     }
-    //compiler ncc/
     // slower than the first submitions @@
     // Another method:
     /*
