@@ -13,15 +13,12 @@ class Solution {
     }
     
     public void backtrack(List<List<Integer>> res, List<Integer> list, int remain, boolean[]flag, int start, int k){
-        if(remain < 0){
-            return;
-        }
-        else if (remain ==0){
-            if(k == list.size()){
+        if (remain ==0 && k==list.size()){
             res.add(new ArrayList<>(list));
-            }
-        }
-        else{
+            return;
+         }
+        
+        else {
             while(start < 10 && start <= remain){
             list.add(start);
             backtrack(res,list,remain - start, flag, start+1,k);
