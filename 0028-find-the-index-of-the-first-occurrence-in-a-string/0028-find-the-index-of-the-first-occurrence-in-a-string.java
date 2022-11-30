@@ -7,7 +7,6 @@ class Solution {
             return -1;
         }
         if(haystack.length() == 0) return -1;
-        
         for (int i =0;i<haystack.length();i++){
             if((i + needle.length()) > haystack.length() ) break;   
             for (int j = 0;j<needle.length();j++){
