@@ -14,9 +14,5 @@ class Solution {
             backtrack(list,tempList,nums,i+1);
             tempList.remove(tempList.size()-1);}
         }
-        
-        
-        
-        
     }
 }
