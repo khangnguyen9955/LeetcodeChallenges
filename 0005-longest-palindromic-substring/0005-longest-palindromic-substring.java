@@ -1,26 +1,33 @@
 class Solution {
-    public String longestPalindrome(String str) {
-        int start = 0;
+    public String longestPalindrome(String s) {
+        int start = 0 ;
         int end = 0;
-        for (int i =0 ; i < str.length(); i++){
-            int oddComparation = expandAroundCenter(str,i,i);
-            int evenComparation = expandAroundCenter(str, i, i+1);
-            int max = Math.max(oddComparation, evenComparation);
-            // this use to store the index of the longest palindromic substring
-            // the max is just the max between 2 last comparations
-            if(max > end-start){
-                // since the i will always be the middle of the substring
-                    start = i - (max-1)/2;                
-                    end = i + max/2;
+
+        for(int i = 0 ;i < s.length();i++){
+            // now we will check even and odd 
+            // b a b
+            int odd = expandToLeftAndRight(s, i,i);
+            // baab
+            int even = expandToLeftAndRight(s,i,i+1);
+            int max = Math.max(odd,even);
+            if (max > end -start){
+                // since our i will always be the middle index
+                start = i - (max-1)/2;
+                end =  i + max/2;
             }
         }
-                    return str.substring(start,end+1);
+        return s.substring(start,end+1);
+
+
     }
-    private int expandAroundCenter(String s, int left, int right){
-        while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)){
+    public int expandToLeftAndRight(String str, int left, int right){
+        while ( left >=0 && right < str.length() && str.charAt(left) == str.charAt(right)){
             left--;
             right++;
+            // expand
         }
-        return right - left - 1;
+        return right-left-1;
     }
+    
 }
+    
