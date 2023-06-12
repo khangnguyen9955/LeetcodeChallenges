@@ -53,7 +53,7 @@ class StreamChecker {
         // add every new character to front of the queue/
         // so we can start loop from the front of the queue with new character 
         // do not need to loop again and again 
-        // 
+        // we can also use a List and append to the last of list, then iterate backwards.
         return trie.search(stream);
     }
 }
