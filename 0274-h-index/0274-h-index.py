@@ -1,5 +1,6 @@
 class Solution:
     def hIndex(self, citations: List[int]) -> int:
+        """
         length = len(citations)
         count = [0] * (length+1)
         for c in citations:
@@ -14,6 +15,11 @@ class Solution:
             if result >= i:
                 return i
         return 0
-    
+        
+        """
+        # genius solution
+        return sum(i<j for i,j in enumerate(sorted(citations,reverse=True)))  
+        
+     
 
             
